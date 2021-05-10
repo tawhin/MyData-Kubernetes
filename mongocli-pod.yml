@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo-cli
+  labels:
+    app: mongo-cli
+spec:
+  containers:
+    - name: mongocli
+      image: mongo
+      imagePullPolicy: Always

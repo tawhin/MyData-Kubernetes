@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-service-deploy
+  labels:
+    app: data-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: data-service-api
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0 # This configures the max unavailable during an update as a number to be subtracted from the desired state (aka replicas value)
+      maxSurge: 1 # This states how many additional nodes, on top of the desired state, can be started during a update roll out.
+  template:
+    metadata:
+      labels:
+        app: data-service-api
+    spec: 
+      terminationGracePeriodSeconds: 1
+      containers:
+      - name: web-data-service
+        image: trevwhin/data-service:1.0
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 4242
+        envFrom:
+          - configMapRef:
+              name: data-service-config
