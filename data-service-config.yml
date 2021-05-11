@@ -3,7 +3,8 @@ kind: ConfigMap
 metadata:
   name: data-service-config
 data:
-  REPOSITORY: "mongo-repository"
+  REPOSITORY: mongo-repository
   PORT: "4242"
-  MONGO_HOST: "mongo-service"
-  DB_NAME: "MyDataDB"
+  MONGO_HOST: mongo-service
+  DB_NAME: MyDataDB
+  CORS: GET,POST,PUT,DELETE

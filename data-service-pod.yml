@@ -14,3 +14,10 @@ spec:
       envFrom:
         - configMapRef:
           name: data-service-config
+      volumeMounts:
+        - name: events-volume
+          mountPath: /etc/config
+  volumes:
+    - name: events-volume
+      configMap:
+        name: events-config

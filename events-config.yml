@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: events-config
+data:
+  events: event1,event2,event3,event4

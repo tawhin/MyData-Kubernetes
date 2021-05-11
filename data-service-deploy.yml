@@ -23,10 +23,17 @@ spec:
       terminationGracePeriodSeconds: 1
       containers:
       - name: web-data-service
-        image: trevwhin/data-service:1.0
+        image: trevwhin/data-service:1.3
         imagePullPolicy: Always
         ports:
           - containerPort: 4242
         envFrom:
           - configMapRef:
               name: data-service-config
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            name: data-service-config
