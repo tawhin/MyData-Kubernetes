@@ -7,17 +7,17 @@ metadata:
 spec:
   containers:
     - name: web-data-service
-      image: trevwhin/data-service:prod
+      image: trevwhin/data-service:1.3
       imagePullPolicy: Always
       ports:
         - containerPort: 4242
       envFrom:
         - configMapRef:
-          name: data-service-config
+            name: data-service-config
       volumeMounts:
-        - name: events-volume
+        - name: config-volume
           mountPath: /etc/config
-  volumes:
-    - name: events-volume
-      configMap:
-        name: events-config
+    volumes:
+      - name: config-volume
+        configMap:
+          name: data-service-config
